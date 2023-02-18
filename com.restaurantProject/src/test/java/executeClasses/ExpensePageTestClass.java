@@ -30,7 +30,7 @@ public class ExpensePageTestClass extends BaseClass {
 	}
 
 	@Test(priority=2)
-	public void verifyTheAddExpenseButtonIsVisibleOrNot()  throws IOException 
+	public void verifyTheAddExpenseButtonIsVisible()  throws IOException 
 	{
 		lp=new LoginPageClass(driver);
 		ep=new ExpensePageClass(driver);

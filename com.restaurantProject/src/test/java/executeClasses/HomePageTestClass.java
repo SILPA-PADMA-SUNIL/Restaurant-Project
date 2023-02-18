@@ -14,8 +14,8 @@ public class HomePageTestClass extends BaseClass {
 	HomePageClass hp;
 
 
-	@Test(priority = 1)
-	public void varifyProductTabIsDisplayedOrNot() throws IOException 
+	@Test(priority = 1, groups = {"group-1"})
+	public void varifyProductTabIsDisplayed() throws IOException 
 	{
 		lp=new LoginPageClass(driver);
 		hp=new HomePageClass(driver);
@@ -28,8 +28,8 @@ public class HomePageTestClass extends BaseClass {
 		Assert.assertTrue(actual);
 	}
 
-	@Test(priority = 2)
-	public void varifyD4StoreIsDisplayedOrNot() throws IOException 
+	@Test(priority = 2, groups = {"group-1"})
+	public void varifyD4StoreIsDisplayed() throws IOException 
 	{
 
 		lp=new LoginPageClass(driver);
@@ -42,8 +42,8 @@ public class HomePageTestClass extends BaseClass {
 		Boolean actual=hp.isD4StoreDisplayed();
 		Assert.assertTrue(actual);
 	}
-	@Test(priority = 3)
-	public void varifyLogoutButtonIsWorkingOrNot() throws IOException, InterruptedException 
+	@Test(priority = 3, groups = {"functional"})
+	public void varifyLogoutButtonIsWorking() throws IOException, InterruptedException 
 	{
 
 		lp=new LoginPageClass(driver);

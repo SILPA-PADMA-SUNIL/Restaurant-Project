@@ -94,8 +94,9 @@ public class ProductPageClass {
 		gu.clickElement(addProductBtn);
 	}
 
-	public void enterProductCode(String data)
+	public void enterProductCode(String data) throws InterruptedException
 	{
+		gu.addThreadSleep();
 		gu.typeIntoAnElement(productCode, data);
 	}
 	public void enterProductName(String name)

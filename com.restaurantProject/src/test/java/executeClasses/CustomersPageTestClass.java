@@ -30,7 +30,7 @@ public class CustomersPageTestClass extends BaseClass{
 		Assert.assertTrue(actual);
 	}
 	@Test(priority=2)
-	public void verifyTheAddcustomerButtonIsVisibleOrNot() throws IOException 
+	public void verifyTheAddcustomerButtonIsVisible() throws IOException 
 	{
 		lp=new LoginPageClass(driver);
 		cp=new CustomersPageClass(driver);
