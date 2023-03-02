@@ -33,7 +33,7 @@ public class LoginPageTestClass extends BaseClass {
 		lp=new LoginPageClass(driver);
 
 		lp.enterUserName(uname);
-		//lp.enterpassword(pwd);
+		lp.enterpassword(pwd);
 		lp.clickOnLoginButton();
 
 		String expected="  admin Doe";
