@@ -19,10 +19,8 @@ public class ExpensePageTestClass extends BaseClass {
 		lp=new LoginPageClass(driver);
 		ep=new ExpensePageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
-
+		lp.login();
+		
 		ep.clickOnExpenseTab();
 		String expected="Expence";
 		String actual=ep.getExpensetext();
@@ -34,9 +32,8 @@ public class ExpensePageTestClass extends BaseClass {
 	{
 		lp=new LoginPageClass(driver);
 		ep=new ExpensePageClass(driver);
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		
+		lp.login();
 
 		ep.clickOnExpenseTab();
 

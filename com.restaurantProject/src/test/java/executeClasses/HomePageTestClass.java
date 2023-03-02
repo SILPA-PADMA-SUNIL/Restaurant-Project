@@ -20,9 +20,7 @@ public class HomePageTestClass extends BaseClass {
 		lp=new LoginPageClass(driver);
 		hp=new HomePageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		lp.login();
 
 		Boolean actual=hp.isProductTabDisplayed();
 		Assert.assertTrue(actual);
@@ -35,10 +33,8 @@ public class HomePageTestClass extends BaseClass {
 		lp=new LoginPageClass(driver);
 		hp=new HomePageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
-
+		lp.login();
+		
 		Boolean actual=hp.isD4StoreDisplayed();
 		Assert.assertTrue(actual);
 	}
@@ -49,9 +45,7 @@ public class HomePageTestClass extends BaseClass {
 		lp=new LoginPageClass(driver);
 		hp=new HomePageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		lp.login();
 
 		hp.clickOnlogoutButton();
 

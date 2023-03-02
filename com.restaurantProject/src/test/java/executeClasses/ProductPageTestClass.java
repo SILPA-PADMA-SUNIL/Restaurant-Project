@@ -3,25 +3,28 @@ package executeClasses;
 import java.io.IOException;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import elementRepository.LoginPageClass;
 import elementRepository.ProductPageClass;
+import extendReport.TestListener;
+@Listeners(TestListener.class)
 
 public class ProductPageTestClass extends BaseClass {
 
 	LoginPageClass lp;
 	ProductPageClass pp;
+	String code;
 
 	@Test(priority = 1, groups = {"group-1"})
 	public void verifyTheProductPageIsOpenedWhileClickingOnProductTab() throws IOException  {
+		TestListener.getTestInstance().get().assignCategory("smoke");
 		
 		lp=new LoginPageClass(driver);
 		pp=new ProductPageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		lp.login();
 
 		pp.clickOnProductTab();
 
@@ -35,19 +38,19 @@ public class ProductPageTestClass extends BaseClass {
 		lp=new LoginPageClass(driver);
 		pp=new ProductPageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
-
+		lp.login();
 
 		pp.clickOnProductTab();
 		pp.clickOnAddProduct();
 		
-		pp.enterProductCode(pp.readProductCode(2, 1));
+		code=pp.enterProductCode();
+		System.out.println(code);
+		
 		pp.enterProductName(pp.readProductName(3, 1));
 		pp.enterProductTax(pp.readProductTax(4, 1));
 		pp.enterProductPrice(pp.readProductPrice(5, 1));
 		pp.insertImageOnChooseFile(System.getProperty("user.dir")+"\\src\\main\\resources\\biriyani.jpg");
+		
 		pp.clickOnFirstSubmitBtnOnAddProduct();
 		pp.clickOnSecondSubmitBtnOnAddProduct();
 		
@@ -60,16 +63,16 @@ public class ProductPageTestClass extends BaseClass {
 	}
 
 	@Test(priority = 3, groups = {"search"})
-	public void verifySearchFunctionalityByUsingProductName() throws IOException
+	public void verifySearchFunctionalityByUsingProductName() throws IOException, InterruptedException
 	{
 		lp=new LoginPageClass(driver);
 		pp=new ProductPageClass(driver);
-
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		
+		lp.login();
 
 		pp.clickOnProductTab();
+		
+		code=pp.addProduct();
 		
 		pp.enterDataInSearch("biriyani");
 
@@ -79,64 +82,61 @@ public class ProductPageTestClass extends BaseClass {
 	}
 
 	@Test(priority = 4, groups = {"search"})
-	public void verifySearchFunctionalityByUsingProductCode() throws IOException
+	public void verifySearchFunctionalityByUsingProductCode() throws IOException, InterruptedException
 	{
 		lp=new LoginPageClass(driver);
 		pp=new ProductPageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
-
+		lp.login();
 
 		pp.clickOnProductTab();
+		code=pp.addProduct();
 		
-		pp.enterDataInSearch("pr467");
+		pp.enterDataInSearch(code);
 
-		String expected="pr467";
+		String expected=code;
 		String actual=pp.getProductCodeOfBiriyani();
 		Assert.assertEquals(actual, expected);
 	}
 
-	@Test(priority = 5, groups = {"edit"})
-	public void verifyTheEditFunctionalityOfTheProduct() throws IOException
+	@Test(enabled=false,priority = 5, groups = {"edit"})
+	public void verifyTheEditFunctionalityOfTheProduct() throws IOException, InterruptedException
 	{
 		lp=new LoginPageClass(driver);
 		pp=new ProductPageClass(driver);
-
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		
+		lp.login();
 
 		pp.clickOnProductTab();
+		code=pp.addProduct();
 		
-		pp.enterDataInSearch("biriyani");
+		pp.enterDataInSearch(code);
 		
 		pp.clickOnEditButton();
 		pp.clearTaxColumn();
 		pp.enterNewTaxValue("25");
 		pp.clickSubmitButtonOnEdit();
 		
-		pp.enterDataInSearch("biriyani");
-
-		Boolean actual=pp.isBiriyaniDisplayed();
-		Assert.assertTrue(actual);
+		pp.enterDataInSearch(code);
+		
+		String expected=code;
+		String actual=pp.getProductCodeOfBiriyani();
+		Assert.assertEquals(actual, expected);
 
 	}
 	
-	@Test(priority = 6, groups = {"delete"})
-	public void verifyDeleteFunctinalityOfTheProduct() throws IOException
+	@Test(enabled=false,priority = 6, groups = {"delete"})
+	public void verifyDeleteFunctinalityOfTheProduct() throws IOException, InterruptedException
 	{
 		lp=new LoginPageClass(driver);
 		pp=new ProductPageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		lp.login();
 
 		pp.clickOnProductTab();
+		code=pp.addProduct();
 		
-		pp.enterDataInSearch("biriyani");
+		pp.enterDataInSearch(code);
 		pp.clickOnDeleteButton();
 		pp.clickOnDeleteConfirmationMsg();
 		

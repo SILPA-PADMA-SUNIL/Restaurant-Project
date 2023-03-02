@@ -39,6 +39,7 @@ public class TestListener extends BaseClass  implements ITestListener{
     public synchronized void onTestSuccess(ITestResult result) {
         System.out.println((result.getMethod().getMethodName() + " passed!"));
         test.get().pass("Test passed");
+        
     }
 
     public synchronized void onTestFailure(ITestResult result) {
@@ -57,7 +58,9 @@ public class TestListener extends BaseClass  implements ITestListener{
 
     public static ThreadLocal<ExtentTest> getTestInstance(){
         return test;
+        
     }
+    
 
 
 }

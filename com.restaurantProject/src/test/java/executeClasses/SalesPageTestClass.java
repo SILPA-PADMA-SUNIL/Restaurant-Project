@@ -19,9 +19,7 @@ public class SalesPageTestClass extends BaseClass {
 		lp=new LoginPageClass(driver);
 		sl=new SalesPageClass(driver);
 
-		lp.enterUserName(lp.readUserName(0, 1));
-		lp.enterpassword(lp.readPassword(1, 1));
-		lp.clickOnLoginButton();
+		lp.login();
 
 		sl.clickOnSalestab();
 
